@@ -1,3 +1,4 @@
 interface: Loopback11
 ip: 192.168.211.1 255.255.255.255
-desc_int: This is example from host_vars rtr1 ios in Datacenter Branch 281027a
+desc_int: Change from DC branch
+
