@@ -1,15 +1,15 @@
 ---
-- name: cli command playbook
+- name: Cli command playbook
   hosts: all
-  gather_facts: no
+  gather_facts: false
   vars:
     ansible_connection: network_cli
 
   tasks:
-    - name: show command
-      cli_command:
-        command: "delete flash:{{ tower_input | default('')}}"
-        check_all: True
+    - name: Show command
+      ansible.netcommon.cli_command:
+        command: "delete flash:{{ tower_input | default('') }}"
+        check_all: true
         prompt:
           - "Delete filename"
           - "Delete bootflash:"
@@ -20,5 +20,6 @@
 
       register: output
 
-    - debug:
+    - name: Debug
+      ansible.builtin.debug:
         msg: "{{ output.stdout_lines }}"
