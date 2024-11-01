@@ -1,0 +1,18 @@
+---
+- name: Configure VLANs
+  hosts: arista
+  gather_facts: false
+
+  tasks:
+
+    - name: Use vlans resource module
+      arista.eos.eos_vlans:
+        state: replaced
+        config:
+          - name: printers
+            vlan_id: 40
+          - name: DMZ
+            vlan_id: 50
+          - name: Replaced-vlan
+            vlan_id: 60
+
