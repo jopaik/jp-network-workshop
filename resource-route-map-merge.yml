@@ -39,7 +39,7 @@
                     resolved_next_hop: "list1"
         state: merged
 
-    - name: Use vlans resource module
+    - name: Use Route map resource module
       arista.eos.eos_route_maps:
         state: gathered
       register: route_map_config
