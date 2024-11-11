@@ -1,0 +1,50 @@
+---
+- name: Configure Route Map
+  hosts: arista
+  gather_facts: false
+
+  tasks:
+
+    - name: Merge provided configuration with device configuration
+      arista.eos.eos_route_maps:
+        config:
+          - route_map: "mapmerge"
+            entries:
+              - description: "merged_map"
+                action: "permit"
+                sequence: 10
+                match:
+                  router_id: 22
+              - description: "newmap"
+                action: "deny"
+                sequence: 25
+                continue_sequence: 45
+                match:
+                  interface: "Ethernet1"
+          - route_map: "mapmerge2"
+            entries:
+              - sub_route_map:
+                  name: "mapmerge"
+                action: "deny"
+                sequence: 45
+                set:
+                  metric:
+                    value: 25
+                    add: "igp-metric"
+                  as_path:
+                    prepend:
+                      last_as: 2
+                match:
+                  ipv6:
+                    resolved_next_hop: "list1"
+        state: merged
+
+    - name: Use vlans resource module
+      arista.eos.eos_route_maps:
+        state: gathered
+      register: route_map_config
+    
+    - name: Print Route Map
+      ansible.builtin.debug:
+        var: route_map_config
+         
