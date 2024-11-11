@@ -21,22 +21,6 @@
                 continue_sequence: 45
                 match:
                   interface: "Ethernet1"
-          - route_map: "mapmerge2"
-            entries:
-              - sub_route_map:
-                  name: "mapmerge"
-                action: "deny"
-                sequence: 45
-                set:
-                  metric:
-                    value: 25
-                    add: "igp-metric"
-                  as_path:
-                    prepend:
-                      last_as: 2
-                match:
-                  ipv6:
-                    resolved_next_hop: "list1"
         state: merged
 
     - name: Use Route map resource module
