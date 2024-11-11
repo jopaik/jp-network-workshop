@@ -31,4 +31,10 @@
     - name: Print Route Map
       ansible.builtin.debug:
         var: route_map_config
+
+    - name: Lookup vars
+      ansible.builtin.debug: msg="{{ lookup('ansible.builtin.vars', 'sequence' + myvar) }}"
+      vars: 
+        variablename: sequence
+        myvar: ename
          
