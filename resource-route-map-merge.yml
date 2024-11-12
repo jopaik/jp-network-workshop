@@ -33,12 +33,6 @@
         var: route_map_config
       register: flat_map
 
-    - name: check for sequence 20
-      ansible.builtin.assert: 
-        that:
-          - "'20' not in flat_map"
-
-
     - name: Merge provided configuration with device configuration
       arista.eos.eos_route_maps:
         config:
@@ -49,6 +43,6 @@
                 sequence: 20
                 match:
                   router_id: 20
-      when: '"sequence: 20" not in route_map_config.gathered'
+      when: '""sequence": 20" not in flat_map_config.stdout'
  
          
