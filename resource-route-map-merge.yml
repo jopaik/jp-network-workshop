@@ -30,7 +30,7 @@
     
     - name: Print Route Map
       ansible.builtin.debug:
-        var: "{{ route_map_config | flatten }}"
+        var: "{{ route_map_config | list | flatten }}"
       register: flat_map
 
     - name: check for sequence 20
