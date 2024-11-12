@@ -32,8 +32,9 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config.gathered | selectattr('entries') | selectattr('sequence')}}"
-    
+        msg: "{{ route_map_config.gathered.entries[0] }}"
+      register: flat_map
+
 
 
     # - name: Merge provided configuration with device configuration
