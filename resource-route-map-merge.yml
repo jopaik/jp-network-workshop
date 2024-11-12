@@ -31,7 +31,7 @@
     - name: debug route_map_config
       ansible.builtin.debug:
         msg: "{{ item }}"
-      with_items: "{{ route_map_config.json.data }}"
+      with_items: "{{ route_map_config.gathered[].entries.json.data }}"
       when: '"20" not in "{{ item.sequence }}"'
 
 
