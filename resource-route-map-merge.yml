@@ -30,9 +30,8 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        var: item
-      loop: "{{ route_map_config | community.general.json_query('gathered.entries[*].sequence') }}"
-      register: flat_map
+        var: "{{ route_map_config.gathered[*].entries[sequence] }}"
+    
 
 
     # - name: Merge provided configuration with device configuration
