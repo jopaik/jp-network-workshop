@@ -30,7 +30,7 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        var: "{{ route_map_config.gathered[*].entries[sequence] }}"
+        var: "{{ route_map_config.gathered[].entries[sequence] }}"
     
 
 
