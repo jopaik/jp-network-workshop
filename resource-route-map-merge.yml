@@ -30,7 +30,7 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config.gathered.entries | dict2items }}"
+        msg: "{{ route_map_config.gathered[entries] | dict2items }}"
       register: flat_map
 
     - name: debug flat_map
