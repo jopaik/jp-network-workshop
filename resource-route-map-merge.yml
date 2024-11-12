@@ -30,7 +30,12 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config.gathered }}"
+        msg: "{{ route_map_config.gathered | combine }}"
+      register: flat_map
+
+    - name: debug flat_map
+      ansible.builtin.debug:
+        msg: "{{ flat_map }}"
 
     - name: Merge provided configuration with device configuration
       arista.eos.eos_route_maps:
