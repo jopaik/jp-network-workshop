@@ -36,7 +36,7 @@
     - name: check for sequence 20
       ansible.builtin.assert: 
         that:
-          - '"20" not in route_map_config.gathered'
+          - "'20' not in flat_map"
 
 
     - name: Merge provided configuration with device configuration
