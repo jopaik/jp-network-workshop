@@ -28,6 +28,10 @@
         state: gathered
       register: route_map_config
 
+    - name: debug route_map_config
+      ansible.builtin.debug:
+        msg: "{{ route_map_config.stdout }}"
+        
     - name: Merge provided configuration with device configuration
       arista.eos.eos_route_maps:
         config:
