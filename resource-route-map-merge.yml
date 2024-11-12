@@ -48,6 +48,6 @@
                 sequence: 20
                 match:
                   router_id: 20
-
+      when: '"sequence: 20" not in route_map_config.gathered'
  
          
