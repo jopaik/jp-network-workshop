@@ -32,7 +32,7 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config.gathered | selectattr('sequence')}}"
+        msg: "{{ route_map_config.gathered | selectattr('entries')}}"
     
 
 
