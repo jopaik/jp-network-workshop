@@ -32,8 +32,8 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config.gathered.entries[0] }}"
-      register: flat_map
+        msg: "{{ item | type_debug }}"
+      loop:  "{{ route_map_config.gathered }}"
 
 
 
