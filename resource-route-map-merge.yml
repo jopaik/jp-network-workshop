@@ -25,12 +25,14 @@
 
     - name: Use Route map resource module
       arista.eos.eos_route_maps:
+        config:
+          - route_map: "mapmerge"
         state: gathered
       register: route_map_config
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        var: "{{ route_map_config.gathered.entries.sequence }}"
+        var: "{{ route_map_config.gathered }}"
     
 
 
