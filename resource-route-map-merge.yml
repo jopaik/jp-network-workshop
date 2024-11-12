@@ -32,7 +32,7 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        var: "{{ route_map_config.gathered }}"
+        msg: "{{ route_map_config.gathered }}"
     
 
 
