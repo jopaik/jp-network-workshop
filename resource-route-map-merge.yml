@@ -37,5 +37,17 @@
         that:
           - "'sequence: 20' not in route_map_config"
 
+
+    - name: Merge provided configuration with device configuration
+      arista.eos.eos_route_maps:
+        config:
+          - route_map: "mapmerge"
+            entries:
+              - description: "merged_map_seq20"
+                action: "permit"
+                sequence: 20
+                match:
+                  router_id: 20
+
  
          
