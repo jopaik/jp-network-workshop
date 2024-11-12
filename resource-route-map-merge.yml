@@ -32,9 +32,9 @@
       ansible.builtin.debug:
         var: route_map_config
 
-    - name: Lookup vars
-      ansible.builtin.debug: msg="{{ lookup('ansible.builtin.vars', 'sequence' + myvar) }}"
-      vars: 
-        variablename: sequence
-        myvar: ename
+    - name: check for sequence 20
+      ansible.builtin.assert: 
+        that:
+          - '"sequence": 20' not in route_map_config
+ 
          
