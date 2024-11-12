@@ -30,7 +30,7 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config.gathered | list }}"
+        msg: "{{ route_map_config | community.general.json_query('[*].sequence')  }}"
       register: flat_map
 
     - name: debug flat_map
