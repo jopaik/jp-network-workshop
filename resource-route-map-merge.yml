@@ -30,12 +30,12 @@
     
     - name: Print Route Map
       ansible.builtin.debug:
-        var: route_map_config
+        var: route_map_config.gathered
 
     - name: check for sequence 20
       ansible.builtin.assert: 
         that:
-          - "'sequence: 20' not in route_map_config"
+          - "'sequence: 20' not in route_map_config.gathered"
 
 
     - name: Merge provided configuration with device configuration
