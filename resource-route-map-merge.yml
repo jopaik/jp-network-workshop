@@ -30,10 +30,9 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "sequence: {{ item.sequence }} "
-      loop: "{{ route_map_config.gathered | lookup('ansible.builtin.dict', entries) }}"
+        msg: "{{ route_map_config.gathered | dict2items }}
       register: flat_map
-
+      
     - name: debug flat_map
       ansible.builtin.debug:
         msg: "{{ flat_map }}"
