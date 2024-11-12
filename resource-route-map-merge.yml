@@ -38,7 +38,7 @@
     - name: debug sequence
       ansible.builtin.debug:
         msg: "{{ item | type_debug }}"
-      loop:  "{{ route_map_config.gathered.entries[sequence] }}"
+      loop:  "{{ route_map_config.gathered.entries }}"
 
 
     # - name: Merge provided configuration with device configuration
