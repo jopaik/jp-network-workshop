@@ -30,8 +30,10 @@
 
     - name: debug route_map_config
       ansible.builtin.debug:
-        msg: "{{ route_map_config | community.general.json_query('[*].sequence')  }}"
-      register: flat_map
+        msg: "{{ item }}"
+      with_items: "{{ route_map_config.json.data }}"
+      when: '"20" not in "{{ item.sequence }}"'
+
 
     - name: debug flat_map
       ansible.builtin.debug:
