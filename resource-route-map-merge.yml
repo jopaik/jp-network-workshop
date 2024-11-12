@@ -35,6 +35,10 @@
         msg: "{{ item | type_debug }}"
       loop:  "{{ route_map_config.gathered }}"
 
+    - name: debug sequence
+      ansible.builtin.debug:
+        msg: "{{ item | type_debug }}"
+      loop:  "{{ route_map_config.gathered.entries[sequence] }}"
 
 
     # - name: Merge provided configuration with device configuration
