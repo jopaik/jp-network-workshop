@@ -27,11 +27,6 @@
       arista.eos.eos_route_maps:
         state: gathered
       register: route_map_config
-    
-    - name: Print Route Map
-      ansible.builtin.debug:
-        var: route_map_config
-      register: flat_map
 
     - name: Merge provided configuration with device configuration
       arista.eos.eos_route_maps:
