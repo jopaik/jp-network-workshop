@@ -30,19 +30,17 @@
           - result[0] not contains "permit 20"
           - result[0] not contains "deny 20"
 
-
-
-
-    # - name: Merge provided configuration with device configuration
-    #   arista.eos.eos_route_maps:
-    #     config:
-    #       - route_map: "mapmerge"
-    #         entries:
-    #           - description: "merged_map_seq20"
-    #             action: "permit"
-    #             sequence: 20
-    #             match:
-    #               router_id: 20
+    - name: Merge provided configuration with device configuration
+      arista.eos.eos_route_maps:
+        config:
+          - route_map: "mapmerge"
+            entries:
+              - description: "merged_map_seq20"
+                action: "permit"
+                sequence: 20
+                match:
+                  router_id: 20
+        state: merged
 
  
          
