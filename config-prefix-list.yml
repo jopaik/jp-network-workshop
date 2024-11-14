@@ -1,0 +1,16 @@
+---
+- name: Configure Prefix List
+  hosts: arista
+  gather_facts: false
+
+  tasks:
+    - name: Configure Prefix List
+      arista.eos.eos_config:
+        lines:
+          - seq 10 permit 11.11.1.0/24 
+          - seq 20 permit 22.22.2.0/24
+          - seq 30 permit 33.33.3.0/24
+          - seq 90 deny 10.0.0.0/8
+        parents: ip prefix-list prefixdemo1
+        before: no ip prefix-list prefixdemo1 
+ 
