@@ -21,7 +21,6 @@
           - result[0] contains "seq 20"
 
     - name: remove prefix list 20 on prefixdemo1
-    - name: Configure Prefix List
       arista.eos.eos_config:
         lines:
           - no seq 20 
