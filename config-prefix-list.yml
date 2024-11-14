@@ -14,3 +14,22 @@
         parents: ip prefix-list prefixdemo1
         before: no ip prefix-list prefixdemo1 
  
+    - name: show prefix List check if seq 20 exist
+      arista.eos.eos_command:
+        commands: show ip prefix-list prefixdemo1
+        wait_for:
+          - result[0] contains "seq 20"
+
+    - name: remove prefix list 20 on prefixdemo1
+    - name: Configure Prefix List
+      arista.eos.eos_config:
+        lines:
+          - no seq 20 
+        parents: ip prefix-list prefixdemo1
+
+
+    - name: show prefix List check if seq 20 is not exist
+      arista.eos.eos_command:
+        commands: show ip prefix-list prefixdemo1
+        wait_for:
+          - result[0] not contains "seq 20"
