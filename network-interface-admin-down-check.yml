@@ -1,0 +1,23 @@
+---
+- name: Check Interface Status Admin up but Line down via CLI Output
+  hosts: cisco_switches
+  gather_facts: false
+
+  tasks:
+    - name: Run 'show ip interface brief'
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+      register: ip_int_brief
+
+    - name: Extract interfaces with Status 'up' and Protocol 'down'
+      ansible.builtin.set_fact:
+        admin_up_line_down: >-
+          {{
+            ip_int_brief.stdout[0]
+            | regex_findall('^(\S+)\s+\S+\s+YES\s+\S+\s+up\s+down', multiline=True)
+          }}
+
+    - name: Show detected interfaces
+      ansible.builtin.debug:
+        var: admin_up_line_down
